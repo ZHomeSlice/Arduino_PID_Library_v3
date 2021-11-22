@@ -1,7 +1,6 @@
 extern double YawInput;
 
 #define DEBUG
-#include <Macros.h>
 #ifndef PID_v3_h
 #define PID_v3_h
 #define LIBRARY_VERSION	3.0.0
