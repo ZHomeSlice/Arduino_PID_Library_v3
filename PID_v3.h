@@ -6,6 +6,8 @@ extern double YawInput;
 #define LIBRARY_VERSION	3.0.0
 static void nothing(void) {
 }
+static void nothingD(double) {
+}
 class PID
 {
 	public:
@@ -44,7 +46,7 @@ class PID
 	//   the PID calculation is performed.
 	PID & PrimeIntegral(double);             // * sets the Iterm to an offset to assist in startup
 	// Balancing Bot Stuff
-	PID & PID::BalanceBotDrive(float TurnOffset);
+	PID & BalanceBotDrive(float TurnOffset);
 	PID & SetDriveMin(double);
 	PID & SetDriveMax(double);
 	PID & onCostA(void (*CB)(void));
@@ -90,13 +92,13 @@ class PID
 	double PowerOffset = 0;					 // Balancing Bot: for unbalanced motors
 	voidFuncPtr CostA_CB = nothing;
 	voidFuncPtr CostB_CB = nothing;
-	voidFuncPtrD ForwardA_CB = nothing;
-	voidFuncPtrD ReverseA_CB = nothing;
-	voidFuncPtrD ForwardB_CB = nothing;
-	voidFuncPtrD ReverseB_CB = nothing;
+	voidFuncPtrD ForwardA_CB = nothingD;
+	voidFuncPtrD ReverseA_CB = nothingD;
+	voidFuncPtrD ForwardB_CB = nothingD;
+	voidFuncPtrD ReverseB_CB = nothingD;
 
 	template <class X, class M, class N, class O, class Q>
-	X PID::map_Generic(X x, M in_min, N in_max, O out_min, Q out_max);
+	X map_Generic(X x, M in_min, N in_max, O out_min, Q out_max);
 };
 #endif
 

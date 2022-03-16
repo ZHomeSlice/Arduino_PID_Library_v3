@@ -241,24 +241,24 @@ PID & PID::SetDriveMax(double Max){
 * be adjusted on the fly during normal operation
 ******************************************************************************/
 PID & PID::SetTunings(double Kp, double Ki, double Kd){
-	if (Kp<0 || Ki<0 || Kd<0) return;
+	if (Kp<0 || Ki<0 || Kd<0) return *this; // return Pointer to this class
 	kp  = Kp;
 	ki = Ki;
 	kd = Kd;
 	return *this; // return Pointer to this class
 }
 PID & PID::SetKp(double Kp){
-	if (Kp<0 ) return;
+	if (Kp<0 ) return *this; // return Pointer to this class
 	kp  = Kp;
 	return *this; // return Pointer to this class
 }
 PID & PID::SetKi(double Ki){
-	if (Ki<0 ) return;
+	if (Ki<0 ) return *this; // return Pointer to this class
 	ki = Ki;
 	return *this; // return Pointer to this class
 }
 PID & PID::SetKd(double Kd){
-	if (Kd<0 ) return;
+	if (Kd<0 ) return *this; // return Pointer to this class
 	kd = Kd;
 	return *this; // return Pointer to this class
 }
@@ -284,7 +284,7 @@ PID & PID::SetSampleTimeus(unsigned long NewSampleTime){
 *  here.
 **************************************************************************/
 PID & PID::SetOutputLimits(double Min, double Max){
-	if(Min >= Max) return;
+	if(Min >= Max) return *this; // return Pointer to this class
 	outMin = Min;
 	outMax = Max;
 	return *this; // return Pointer to this class
@@ -317,7 +317,7 @@ void PID::Initialize(){
 	double DesiredOutput = *myOutput;
 	PID::PrimeIntegral(DesiredOutput);
 	lastInput = *myInput;
-	return *this; // return Pointer to this class
+	return ; // 
 }
 
 /* PrimeIntegral()****************************************************************
