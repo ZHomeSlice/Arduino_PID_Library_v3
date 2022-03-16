@@ -13,7 +13,7 @@
 
 #include <PID_v3.h>
 
-
+#define DPRINTSTIMER(t) for (static uint32_t SpamTimer; (uint32_t)(millis() - SpamTimer) >= (t); SpamTimer = millis()) // (BLACK BOX) Ya, don't complain that I used "for(;;){}" instead of "if(){}" for my Blink Without Delay Timer macro. It works nicely!!!
 template <class X, class M, class N, class O, class Q>
 X PID::map_Generic(X x, M in_min, N in_max, O out_min, Q out_max){
 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
