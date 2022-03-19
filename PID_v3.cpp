@@ -13,6 +13,7 @@
 
 #include <PID_v3.h>
 
+#define DPRINTSFN(StrSize,Name,Variable,Spaces,Precision) {char S[max((Spaces + Precision + 3), StrSize)];Serial.print(F(" "));Serial.print(F(Name));Serial.print(F(" ")); Serial.print(dtostrf((float)Variable,Spaces,Precision ,S));}//StringSize,Name,Variable,Spaces,Precision
 #define DPRINTSTIMER(t) for (static uint32_t SpamTimer; (uint32_t)(millis() - SpamTimer) >= (t); SpamTimer = millis()) // (BLACK BOX) Ya, don't complain that I used "for(;;){}" instead of "if(){}" for my Blink Without Delay Timer macro. It works nicely!!!
 template <class X, class M, class N, class O, class Q>
 X PID::map_Generic(X x, M in_min, N in_max, O out_min, Q out_max){
@@ -164,7 +165,7 @@ PID & PID::BalanceBotDrive(float TurnOffset){
 		DPRINTSFN(10,"absBOutput",absBOutput,6,2);
 		DPRINTSFN(10,"DriveAOutput",DriveAOutput,6,2);
 		DPRINTSFN(10,"DriveBOutput",DriveBOutput,6,2);
-		DPRINTLN();
+		Serial.println();
 	}
 
 	if (LastADriveDir != ADriveDir) {  // check for no power or change in direction Motor A
